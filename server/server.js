@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import bloodRequestRoutes from "./routes/bloodRequestRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
 
 dotenv.config();
 
@@ -14,10 +15,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 // app.use("/api/donors", donorRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/requests", bloodRequestRoutes);
+app.use("/api/contact", contactRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("✅ MongoDB Connected"))

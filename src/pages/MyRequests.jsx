@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getMyRequests } from "../services/api";
 import { toast } from "react-toastify";
 
-function MyRequests() {
+function MyRequests({ searchTerm = "" }) {
     const [requests, setRequests] = useState([]);
 
     const fetchRequests = async () => {
         try {
             const res = await getMyRequests();
-            setRequests(res.data.requests);
+            setRequests(res.data.requests || []);
         } catch (error) {
             toast.error("Failed to load your requests");
         }
@@ -17,6 +17,21 @@ function MyRequests() {
     useEffect(() => {
         fetchRequests();
     }, []);
+
+    // Search Filter
+    const filteredRequests = requests.filter((req) => {
+        const search = searchTerm.trim().toLowerCase();
+
+        if (search === "") return true;
+
+        return (
+            req.patientName?.toLowerCase().includes(search) ||
+            req.bloodGroup?.toLowerCase().includes(search) ||
+            req.hospital?.toLowerCase().includes(search) ||
+            req.status?.toLowerCase().includes(search) ||
+            req.acceptedBy?.name?.toLowerCase().includes(search)
+        );
+    });
 
     return (
         <div className="container mt-4">
@@ -39,11 +54,17 @@ function MyRequests() {
                             </thead>
 
                             <tbody>
-                                {requests.length > 0 ? (
-                                    requests.map((req) => (
+                                {filteredRequests.length > 0 ? (
+                                    filteredRequests.map((req) => (
                                         <tr key={req._id}>
                                             <td>{req.patientName}</td>
-                                            <td>{req.bloodGroup}</td>
+
+                                            <td>
+                                                <span className="badge bg-danger">
+                                                    {req.bloodGroup}
+                                                </span>
+                                            </td>
+
                                             <td>{req.hospital}</td>
 
                                             <td>

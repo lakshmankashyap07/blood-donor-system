@@ -129,4 +129,52 @@ router.put("/toggle-availability", authMiddleware, async (req, res) => {
     }
 });
 
+// Dashboard Statistics
+router.get("/dashboard", authMiddleware, async (req, res) => {
+    try {
+        const donors = await User.find({ isDonor: true }).select("-password");
+
+        const totalDonors = donors.length;
+
+        const availableDonors = donors.filter(
+            (d) => d.available
+        ).length;
+
+        const maleDonors = donors.filter(
+            (d) => d.gender === "Male"
+        ).length;
+
+        const femaleDonors = donors.filter(
+            (d) => d.gender === "Female"
+        ).length;
+
+        const bloodGroupStats = {
+            "A+": donors.filter(d => d.bloodGroup === "A+").length,
+            "A-": donors.filter(d => d.bloodGroup === "A-").length,
+            "B+": donors.filter(d => d.bloodGroup === "B+").length,
+            "B-": donors.filter(d => d.bloodGroup === "B-").length,
+            "AB+": donors.filter(d => d.bloodGroup === "AB+").length,
+            "AB-": donors.filter(d => d.bloodGroup === "AB-").length,
+            "O+": donors.filter(d => d.bloodGroup === "O+").length,
+            "O-": donors.filter(d => d.bloodGroup === "O-").length,
+        };
+
+        res.status(200).json({
+            success: true,
+            totalDonors,
+            availableDonors,
+            maleDonors,
+            femaleDonors,
+            bloodGroupStats,
+            recentDonors: donors.slice(-5).reverse(),
+            donors
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+});
 export default router;

@@ -1,87 +1,103 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({ closeSidebar }) {
     const menuStyle = ({ isActive }) => ({
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
-        textAlign: "left",
         width: "100%",
-        padding: "10px 15px",
+        padding: "12px 15px",
         borderRadius: "8px",
         color: "#fff",
         textDecoration: "none",
         backgroundColor: isActive ? "#dc3545" : "transparent",
+        transition: "0.3s ease",
+        marginBottom: "8px",
     });
+
+    const handleClick = () => {
+        if (closeSidebar) {
+            closeSidebar();
+        }
+    };
 
     return (
         <div
-            className="bg-dark text-white p-3 shadow"
+            className="bg-dark text-white shadow position-fixed d-none d-lg-block"
             style={{
                 width: "250px",
-                height: "100vh",
-                position: "fixed",
                 top: "70px",
                 left: 0,
-                overflowY: "auto",
+                height: "calc(100vh - 70px)",
+                padding: "20px 15px",
             }}
         >
             <h4 className="mb-4">🩸 Blood Donor</h4>
 
-            <ul className="nav flex-column w-100">
+            <ul className="nav flex-column">
 
-                <li className="nav-item mb-2">
-                    <NavLink to="/" style={menuStyle}>
+                <li className="nav-item">
+                    <NavLink to="/" style={menuStyle} onClick={handleClick}>
                         🏠 <span className="ms-2">Dashboard</span>
                     </NavLink>
                 </li>
 
-                {/* <li className="nav-item mb-2">
-                    <NavLink to="/donors" style={menuStyle}>
-                        ❤️ <span className="ms-2">Donors</span>
-                    </NavLink>
-                </li> */}
-
-                <li className="nav-item mb-2">
-                    <NavLink to="/request-blood" style={menuStyle}>
+                <li className="nav-item">
+                    <NavLink
+                        to="/request-blood"
+                        style={menuStyle}
+                        onClick={handleClick}
+                    >
                         🩸 <span className="ms-2">Request Blood</span>
                     </NavLink>
                 </li>
-                <li className="nav-item mb-2">
+
+                <li className="nav-item">
                     <NavLink
                         to="/blood-requests"
                         style={menuStyle}
+                        onClick={handleClick}
                     >
                         📋 <span className="ms-2">Blood Requests</span>
                     </NavLink>
                 </li>
-                <li className="nav-item mb-2">
-                    <NavLink to="/my-requests" style={menuStyle}>
-                        📋 <span className="ms-2">My Requests</span>
+
+                <li className="nav-item">
+                    <NavLink
+                        to="/my-requests"
+                        style={menuStyle}
+                        onClick={handleClick}
+                    >
+                        📄 <span className="ms-2">My Requests</span>
                     </NavLink>
                 </li>
 
-                <li className="nav-item mb-2">
-                    <NavLink to="/donation-history" style={menuStyle}>
+                <li className="nav-item">
+                    <NavLink
+                        to="/donation-history"
+                        style={menuStyle}
+                        onClick={handleClick}
+                    >
                         📜 <span className="ms-2">Donation History</span>
                     </NavLink>
                 </li>
 
-                <li className="nav-item mb-2">
-                    <NavLink to="/profile" style={menuStyle}>
-                        👤 <span className="ms-2">Profile</span>
-                    </NavLink>
-                </li>
-
-                <li className="nav-item mb-2">
-                    <NavLink to="/about" style={menuStyle}>
+                <li className="nav-item">
+                    <NavLink
+                        to="/about"
+                        style={menuStyle}
+                        onClick={handleClick}
+                    >
                         ℹ️ <span className="ms-2">About</span>
                     </NavLink>
                 </li>
 
-                <li className="nav-item mb-2">
-                    <NavLink to="/contact" style={menuStyle}>
+                <li className="nav-item">
+                    <NavLink
+                        to="/contact"
+                        style={menuStyle}
+                        onClick={handleClick}
+                    >
                         📞 <span className="ms-2">Contact</span>
                     </NavLink>
                 </li>

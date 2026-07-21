@@ -7,14 +7,14 @@ import {
 } from "../services/api";
 import { toast } from "react-toastify";
 
-function BloodRequests() {
+function BloodRequests({ searchTerm = "" }) {
     const [requests, setRequests] = useState([]);
     const [user, setUser] = useState(null);
 
     const fetchRequests = async () => {
         try {
             const res = await getBloodRequests();
-            setRequests(res.data.requests);
+            setRequests(res.data.requests || []);
         } catch (error) {
             toast.error("Failed to load blood requests");
         }
@@ -23,9 +23,15 @@ function BloodRequests() {
     const loadProfile = async () => {
         try {
             const res = await getProfile();
-            setUser(res.data.user);
+
+            if (res.data.user) {
+                setUser(res.data.user);
+            } else {
+                setUser(res.data);
+            }
         } catch (error) {
             console.log(error);
+            toast.error("Failed to load profile");
         }
     };
 
@@ -58,16 +64,34 @@ function BloodRequests() {
         loadProfile();
     }, []);
 
+    // Search Filter
+    const filteredRequests = requests.filter((req) => {
+        const search = searchTerm.trim().toLowerCase();
+
+        if (search === "") return true;
+
+        return (
+            req.patientName?.toLowerCase().includes(search) ||
+            req.bloodGroup?.toLowerCase().includes(search) ||
+            req.hospital?.toLowerCase().includes(search) ||
+            req.city?.toLowerCase().includes(search)
+        );
+    });
+
     return (
         <div className="container mt-4">
             <div className="card shadow border-0">
+
                 <div className="card-header bg-danger text-white">
                     <h3 className="mb-0">🩸 Blood Requests</h3>
                 </div>
 
                 <div className="card-body">
+
                     <div className="table-responsive">
+
                         <table className="table table-bordered table-hover align-middle text-center">
+
                             <thead className="table-danger">
                                 <tr>
                                     <th>Patient</th>
@@ -82,9 +106,13 @@ function BloodRequests() {
                             </thead>
 
                             <tbody>
-                                {requests.length > 0 ? (
-                                    requests.map((req) => (
+
+                                {filteredRequests.length > 0 ? (
+
+                                    filteredRequests.map((req) => (
+
                                         <tr key={req._id}>
+
                                             <td>{req.patientName}</td>
 
                                             <td>
@@ -126,47 +154,69 @@ function BloodRequests() {
                                             </td>
 
                                             <td>
+
                                                 {!user?.isDonor ? (
+
                                                     <span className="text-muted">
                                                         Not Allowed
                                                     </span>
+
                                                 ) : !user?.available ? (
+
                                                     <span className="badge bg-warning text-dark">
                                                         Unavailable
                                                     </span>
+
                                                 ) : req.status === "Pending" ? (
+
                                                     <button
                                                         className="btn btn-success btn-sm"
                                                         onClick={() => handleAccept(req._id)}
                                                     >
                                                         Accept
                                                     </button>
+
                                                 ) : req.status === "Accepted" ? (
+
                                                     <button
                                                         className="btn btn-primary btn-sm"
                                                         onClick={() => handleComplete(req._id)}
                                                     >
                                                         Complete
                                                     </button>
+
                                                 ) : (
+
                                                     <span className="badge bg-success">
                                                         ✔ Completed
                                                     </span>
+
                                                 )}
+
                                             </td>
+
                                         </tr>
+
                                     ))
+
                                 ) : (
+
                                     <tr>
                                         <td colSpan="8" className="text-center">
                                             No Blood Requests Found
                                         </td>
                                     </tr>
+
                                 )}
+
                             </tbody>
+
                         </table>
+
                     </div>
+
                 </div>
+
             </div>
         </div>
     );

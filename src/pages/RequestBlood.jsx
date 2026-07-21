@@ -56,7 +56,7 @@ function RequestBlood() {
                         <div className="row">
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     Patient Name
                                 </label>
                                 <input
@@ -70,7 +70,7 @@ function RequestBlood() {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     Blood Group</label>
                                 <select
                                     className="form-select"
@@ -92,7 +92,7 @@ function RequestBlood() {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     Unit Required
                                 </label>                                <input
                                     type="number"
@@ -106,7 +106,7 @@ function RequestBlood() {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     Hospital
                                 </label>
                                 <input
@@ -120,7 +120,7 @@ function RequestBlood() {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     City
                                 </label>
                                 <input
@@ -134,7 +134,7 @@ function RequestBlood() {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     Contact Number
                                 </label>
                                 <input
@@ -148,7 +148,7 @@ function RequestBlood() {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label className="form-label d-block text-start">
+                                <label className="form-label fw-bold d-block text-start">
                                     Urgency
                                 </label>
                                 <select

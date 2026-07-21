@@ -112,3 +112,14 @@ export const getDonationHistory = () =>
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
     });
+
+export const getDashboard = () =>
+    API.get("/users/dashboard", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+// Contact Message
+export const sendContactMessage = (data) =>
+    API.post("/contact", data);
