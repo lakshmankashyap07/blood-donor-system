@@ -10,7 +10,6 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function BloodGroupChart({ donors = [] }) {
-
     const bloodGroups = [
         "A+",
         "A-",
@@ -29,9 +28,7 @@ function BloodGroupChart({ donors = [] }) {
                 label: "Blood Groups",
                 data: bloodGroups.map(
                     (group) =>
-                        (donors || []).filter(
-                            (donor) => donor.bloodGroup === group
-                        ).length
+                        donors.filter((donor) => donor.bloodGroup === group).length
                 ),
                 backgroundColor: [
                     "#ff6384",
@@ -49,37 +46,54 @@ function BloodGroupChart({ donors = [] }) {
     };
 
     return (
-        <div className="card shadow-sm mt-5">
-
-            <div className="card-header bg-danger text-white">
-                <h5 className="mb-0">
+        <div className="card shadow-sm mt-3 mx-1 border-0">
+            <div className="card-header bg-danger text-white py-2">
+                <h6 className="mb-0 text-center">
                     Blood Group Distribution
-                </h5>
+                </h6>
             </div>
 
-            <div className="card-body">
-
+            <div className="card-body py-3">
                 {donors.length === 0 ? (
-
-                    <div className="text-center text-muted py-5">
+                    <div className="text-center text-muted py-4">
                         No donor data available
                     </div>
-
                 ) : (
-
                     <div
+                        className="d-flex justify-content-center align-items-center"
                         style={{
-                            width: "400px",
-                            margin: "auto",
+                            width: "100%",
+                            height: "340px",
                         }}
                     >
-                        <Pie data={chartData} />
+                        <div
+                            style={{
+                                width: "320px",
+                                height: "320px",
+                            }}
+                        >
+                            <Pie
+                                data={chartData}
+                                options={{
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    plugins: {
+                                        legend: {
+                                            position: "top",
+                                            labels: {
+                                                boxWidth: 12,
+                                                font: {
+                                                    size: 11,
+                                                },
+                                            },
+                                        },
+                                    },
+                                }}
+                            />
+                        </div>
                     </div>
-
                 )}
-
             </div>
-
         </div>
     );
 }

@@ -51,8 +51,8 @@ function Layout({ searchTerm, setSearchTerm }) {
                 <div
                     className="d-none d-lg-block"
                     style={{
-                        width: "250px",
-                        minWidth: "250px",
+                        width: "200px",
+                        minWidth: "200px",
                         background: "#212529",
                         minHeight: "calc(100vh - 70px)",
                     }}

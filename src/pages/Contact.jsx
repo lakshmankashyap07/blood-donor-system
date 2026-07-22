@@ -50,7 +50,7 @@ function Contact() {
   return (
     <>
       {/* Hero Section */}
-      <section className="contact-hero">
+      <section className="contact-hero contact-page">
         <div className="container text-center">
           <h1>Contact</h1>
           <p>
@@ -162,15 +162,15 @@ function Contact() {
                 contact our support team.
               </p>
 
-              <hr className="bg-light" />
+              <hr className="bg-light ct-inf" />
 
               <h5>Contact Information</h5>
 
               <p>📍 Lucknow, Uttar Pradesh, India</p>
 
-              <p>📞 +91 9876543210</p>
+              <p>📞 +91 6387898373</p>
 
-              <p>✉ support@blooddonor.com</p>
+              <p>✉ lakshmankashyap.yt@gmail.com</p>
             </div>
           </div>
         </div>

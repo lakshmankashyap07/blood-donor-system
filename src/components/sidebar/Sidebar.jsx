@@ -8,13 +8,16 @@ function Sidebar({ closeSidebar }) {
         display: "flex",
         alignItems: "center",
         width: "100%",
-        padding: "12px 15px",
+        padding: "8px 10px",
         borderRadius: "8px",
         color: "#fff",
         textDecoration: "none",
         backgroundColor: isActive ? "#dc3545" : "transparent",
-        transition: "0.3s ease",
-        marginBottom: "8px",
+        transition: "0.3s",
+        marginBottom: "3px",
+        fontSize: "14px",
+        fontWeight: isActive ? "500" : "500",
+        lineHeight: "1.2",
     });
 
     const handleClick = () => {
@@ -27,14 +30,16 @@ function Sidebar({ closeSidebar }) {
         <div
             className="bg-dark text-white shadow position-fixed d-none d-lg-block"
             style={{
-                width: "250px",
-                top: "70px",
+                width: "201px",
+                top: "56px",
                 left: 0,
-                height: "calc(100vh - 70px)",
-                padding: "20px 15px",
+                height: "calc(100vh - 56px)",
+                padding: "12px 10px",
+                overflowY: "auto",
+                overflowX: "hidden",
             }}
         >
-            <h4 className="mb-4">🩸 Blood Donor</h4>
+            <h5 className="mb-4 margin">🩸 Blood Donor</h5>
 
             <ul className="nav flex-column">
                 <li className="nav-item">

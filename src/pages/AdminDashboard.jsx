@@ -169,30 +169,30 @@ function AdminDashboard() {
         { title: "Contact Messages", value: data.totalMessages },
     ];
     return (
-        <div className="container-fluid p-4">
-
-            <div className="mb-4">
-                <h2 className="fw-bold text-center">
+        <div className="container-fluid px-2 py-2 admin-dashboard">
+            <div className="mb-3">
+                <h4 className="fw-bold text-center mb-0">
                     Admin Dashboard
-                </h2>
+                </h4>
             </div>
 
             {/* Statistics */}
 
-            <div className="row g-4">
+            <div className="row g-3">
 
                 {cards.map((card) => (
 
-                    <div className="col-lg-3 col-md-6" key={card.title}>
+                    <div
+                        className="col-xl-3 col-lg-3 col-md-6 col-sm-6"
+                        key={card.title}
+                    >
+                        <div className="card shadow-sm h-100 border-0 summary-card text-center">
+                            <div className="card-body py-3">
+                                <h6 className="text-muted mb-2">
+                                    {card.title}
+                                </h6>
 
-                        <div className="card shadow h-100 text-center">
-
-                            <div className="card-body">
-
-                                <h6>{card.title}</h6>
-
-                                <h2 className="text-danger">
-                                    {card.value}
+                                <h2 className="text-danger fw-bold mb-0">                                    {card.value}
                                 </h2>
 
                             </div>
@@ -207,10 +207,9 @@ function AdminDashboard() {
 
             {/* Charts */}
 
-            <div className="row mt-4">
+            <div className="row mt-3">
 
-                <div className="col-lg-6 mb-4">
-
+                <div className="col-lg-6 mb-3">
                     <AdminRequestChart
                         pending={data.pendingRequests}
                         accepted={data.acceptedRequests}
@@ -219,7 +218,7 @@ function AdminDashboard() {
 
                 </div>
 
-                <div className="col-lg-6 mb-4">
+                <div className="col-lg-6 mb-3">
 
                     <AdminUserChart
                         users={data.totalUsers}
@@ -233,30 +232,24 @@ function AdminDashboard() {
 
             {/* Reports */}
 
-            <div className="card shadow mb-4">
-
-                <div className="card-header bg-dark text-white">
-
-                    <h5 className="mb-0">
-                        📊 Reports
-                    </h5>
+            <div className="col-lg-6 mb-3">
+                <div className="card shadow-sm border-0 mb-3">
+                    <h6 className="mb-0">                        📊 Reports
+                    </h6>
 
                 </div>
 
                 <div className="card-body">
 
-                    <div className="d-flex flex-wrap gap-3">
-
+                    <div className="d-flex flex-wrap gap-2">
                         <button
-                            className="btn btn-success"
-                            onClick={exportToExcel}
+                            className="btn btn-success btn-sm" onClick={exportToExcel}
                         >
                             📊 Export Users Excel
                         </button>
 
                         <button
-                            className="btn btn-danger"
-                            onClick={exportBloodRequestsPDF}
+                            className="btn btn-danger btn-sm" onClick={exportBloodRequestsPDF}
                         >
                             📄 Export Blood Requests PDF
                         </button>
@@ -269,20 +262,17 @@ function AdminDashboard() {
 
             {/* Recent Users */}
 
-            <div className="card shadow">
-
-                <div className="card-header bg-danger text-white">
-
-                    <h5 className="mb-0">
+            <div className="card shadow-sm border-0">
+                <div className="card-header bg-danger text-white py-2">
+                    <h6 className="mb-0">
                         Recent Users
-                    </h5>
+                    </h6>
 
                 </div>
 
                 <div className="table-responsive">
 
-                    <table className="table table-hover mb-0">
-
+                    <table className="table table-hover table-sm mb-0 align-middle">
                         <thead>
 
                             <tr>
@@ -321,8 +311,8 @@ function AdminDashboard() {
 
                                             <span
                                                 className={`badge ${user.role === "admin"
-                                                        ? "bg-primary"
-                                                        : "bg-secondary"
+                                                    ? "bg-primary"
+                                                    : "bg-secondary"
                                                     }`}
                                             >
                                                 {user.role}

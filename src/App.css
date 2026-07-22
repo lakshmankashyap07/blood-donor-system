@@ -1,3 +1,7 @@
+/* =========================
+   Global Reset
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,68 +15,917 @@ body,
     min-height: 100vh;
 }
 
+html {
+    font-size: 15px;
+}
+
 body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
     overflow-x: hidden;
 }
 
-.app-layout {
-    display: flex;
-    min-height: calc(100vh - 56px);
-}
-
-.nav-link {
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: #dc3545;
-    color: white !important;
-    padding-left: 18px;
-}
-
-.nav-link i {
-    font-size: 18px;
-}
-
-.card {
-    border-radius: 15px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
-}
+/* =========================
+   Layout
+========================= */
 
 .app-layout {
     display: flex;
-    min-height: calc(100vh - 56px);
-}
-
-.flex-grow-1 {
-    background: #f8f9fa;
-}
-
-.card {
-    border-radius: 15px;
-}
-
-.app-layout {
-    display: flex;
+    min-height: 100vh;
 }
 
 .main-content {
-    margin-left: 250px;
-    margin-top: 70px;
-    width: calc(100% - 250px);
+    margin-left: 190px;
+    margin-top: 56px;
+    width: calc(100% - 190px);
+    min-height: calc(100vh - 56px);
+    padding: 8px;
+    background: #f8f9fa;
+}
+
+@media (max-width:991px) {
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+}
+
+/* =========================
+   Sidebar
+========================= */
+
+.nav-link {
+    border-radius: 8px;
+    transition: .25s;
+}
+
+.nav-link:hover {
+    background: #dc3545;
+    color: #fff !important;
+    padding-left: 14px;
+}
+
+.nav-link i {
+    font-size: 15px;
+}
+
+/* =========================
+   Containers
+========================= */
+
+.container,
+.container-fluid {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
+/* =========================
+   Headings
+========================= */
+
+h1 {
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: .9rem;
+}
+
+/* =========================
+   Cards
+========================= */
+
+.card {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+}
+
+.card-body {
+    padding: .9rem;
+}
+
+.card-header {
+    padding: .65rem 1rem;
+}
+
+.card-header h5,
+.card-header h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Request Blood only */
+
+.request-card {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* =========================
+   Tables
+========================= */
+
+.table {
+    font-size: .9rem;
+    margin-bottom: 0;
+}
+
+.table th,
+.table td {
+    padding: .55rem;
+    vertical-align: middle;
+}
+
+/* =========================
+   Forms
+========================= */
+
+.form-label {
+    margin-bottom: 3px;
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    height: 32px;
+    font-size: .85rem;
+    padding: .25rem .55rem;
+}
+
+.form-control-sm,
+.form-select-sm {
+    height: 32px;
+    font-size: .85rem;
+}
+
+textarea.form-control {
+    min-height: 80px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn {
+    font-size: .88rem;
+    height: 34px;
+    padding: .25rem 1rem;
+}
+
+.btn-sm {
+    height: 30px;
+    padding: .2rem .6rem;
+    min-width: auto;
+}
+
+/* =========================
+   Badges
+========================= */
+
+.badge {
+    font-size: .8rem;
+}
+
+/* =========================
+   Dashboard
+========================= */
+
+.dashboard-title {
+    font-size: 2rem;
+}
+
+.dashboard-card {
+    min-height: 95px;
+}
+
+.dashboard-card h6 {
+    font-size: .85rem;
+}
+
+.dashboard-card h3 {
+    font-size: 1.9rem;
+}
+
+/* ===== Request Blood Compact ===== */
+
+.request-card .card-header h5 {
+    font-size: 1rem !important;
+}
+
+.request-card .form-label {
+    font-size: 0.70rem !important;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.request-card .form-control,
+.request-card .form-select {
+    height: 30px !important;
+    font-size: 0.70rem !important;
+    padding: 0.2rem 0.45rem;
+}
+
+.request-card .form-control::placeholder {
+    font-size: 0.80rem;
+}
+
+.request-card .btn {
+    height: 32px;
+    font-size: 0.82rem;
+    padding: 0.2rem 1rem;
+}
+
+.request-card .row {
+    --bs-gutter-y: .6rem;
+}
+
+.request-card .card-body {
+    padding: .8rem;
+}
+
+/* ===== Blood Requests Compact ===== */
+
+.blood-request-card .card-header {
+    padding: 8px 12px !important;
+}
+
+.blood-request-card .card-header h3,
+.blood-request-card .card-header h4,
+.blood-request-card .card-header h5 {
+    font-size: 1.2rem !important;
+    margin: 0;
+}
+
+.blood-request-card .form-select,
+.blood-request-card .form-control {
+    height: 32px !important;
+    font-size: .70rem !important;
+    padding: 2px 8px;
+}
+
+.blood-request-card table {
+    font-size: .85rem;
+}
+
+.blood-request-card table th {
+    padding: 7px 8px;
+    font-size: .75rem;
+}
+
+.blood-request-card table td {
+    padding: 6px 8px;
+    vertical-align: middle;
+}
+
+.blood-request-card .badge {
+    font-size: .65rem;
+    padding: 4px 7px;
+}
+
+.blood-request-card .btn {
+    font-size: .78rem;
+    padding: 3px 10px;
+    min-height: 30px;
+}
+
+.blood-request-card .pagination .page-link {
+    font-size: 75rem;
+    padding: .3rem .55rem;
+}
+
+.blood-request-card .table-responsive {
+    overflow-x: auto;
+}
+
+.blood-request-card table {
+    width: 100% !important;
+    table-layout: auto;
+    font-size: .75rem;
+}
+
+.blood-request-card th,
+.blood-request-card td {
+    white-space: nowrap;
+    padding: 5px 6px;
+}
+
+/* ===== My Requests Compact ===== */
+
+.my-request-card .card-header {
+    padding: 8px 12px !important;
+}
+
+.my-request-card .card-header h3,
+.my-request-card .card-header h4,
+.my-request-card .card-header h5 {
+    font-size: 1.2rem !important;
+    margin: 0;
+}
+
+.my-request-card .table {
+    width: 100%;
+    font-size: .78rem;
+}
+
+.my-request-card .table th {
+    padding: 7px 8px;
+    font-size: .75rem;
+    white-space: nowrap;
+}
+
+.my-request-card .table td {
+    padding: 6px 8px;
+    font-size: .72rem;
+    vertical-align: middle;
+}
+
+.my-request-card .badge {
+    font-size: .65rem;
+    padding: 3px 7px;
+}
+
+.my-request-card .btn {
+    font-size: .70rem;
+    padding: 3px 8px;
+    min-height: 28px;
+}
+
+.my-request-card .table-responsive {
+    overflow-x: auto;
+}
+
+/* ===== Donation History Compact ===== */
+
+.donation-history-card .card-header {
+    padding: 8px 12px !important;
+}
+
+.donation-history-card .card-header h3,
+.donation-history-card .card-header h4,
+.donation-history-card .card-header h5 {
+    font-size: 1.2rem !important;
+    margin: 0;
+}
+
+.donation-history-card .form-control,
+.donation-history-card .form-select {
+    height: 30px !important;
+    font-size: .70rem !important;
+    padding: 2px 8px;
+}
+
+.donation-history-card .table {
+    width: 100%;
+    font-size: .78rem;
+}
+
+.donation-history-card .table th {
+    padding: 7px 8px;
+    font-size: .75rem;
+    white-space: nowrap;
+}
+
+.donation-history-card .table td {
+    padding: 6px 8px;
+    font-size: .70rem;
+    vertical-align: middle;
+}
+
+.donation-history-card .badge {
+    font-size: .63rem;
+    padding: 3px 7px;
+}
+
+.donation-history-card .btn {
+    font-size: .70rem;
+    padding: 3px 8px;
+    min-height: 28px;
+}
+
+.donation-history-card .table-responsive {
+    overflow-x: auto;
+}
+
+.donation-history-card .pagination .page-link {
+    font-size: .70rem;
+    padding: .3rem .55rem;
+}
+
+/* ===== Contact Page Compact ===== */
+
+.contact-page .hero-wrap,
+.contact-page .hero-section {
+    min-height: 180px !important;
+    padding: 35px 20px !important;
+}
+
+.contact-page h1 {
+    font-size: 2rem !important;
+}
+
+.contact-page h2 {
+    font-size: 1.8rem !important;
+}
+
+.contact-page h3 {
+    font-size: 1.6rem !important;
+}
+
+.contact-page h4 {
+    font-size: 1.3rem !important;
+}
+
+.contact-page p {
+    font-size: .9rem;
+}
+
+.contact-page label {
+    font-size: .82rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.contact-page .form-control,
+.contact-page .form-select {
+    height: 34px !important;
+    font-size: .82rem;
+}
+
+.contact-page textarea.form-control {
+    min-height: 90px;
+}
+
+.contact-page .btn {
+    height: 34px;
+    font-size: .82rem;
+    padding: 4px 20px;
+}
+
+.contact-page .contact-info {
+    padding: 22px !important;
+}
+
+.contact-page .contact-info h2 {
+    font-size: 2rem !important;
+}
+
+.contact-page .contact-info h4 {
+    font-size: 1.2rem;
+}
+
+.contact-page .contact-info p,
+.contact-page .contact-info li {
+    font-size: .85rem;
+    line-height: 1.5;
+}
+
+/* ===========================
+   Admin Dashboard Compact
+=========================== */
+
+.admin-dashboard .card {
+    max-width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 10px;
+}
+
+.admin-dashboard .summary-card {
+    min-height: 90px;
+}
+
+.admin-dashboard .summary-card .card-body {
+    padding: 15px;
+}
+
+.admin-dashboard .summary-card h6 {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 6px;
+}
+
+.admin-dashboard .summary-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin-dashboard .card-header {
+    padding: 8px 14px;
+}
+
+.admin-dashboard .card-header h5,
+.admin-dashboard .card-header h6 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.admin-dashboard .card-body {
+    padding: 12px;
+}
+
+.admin-dashboard canvas {
+    max-height: 250px !important;
+}
+
+.admin-dashboard .table {
+    font-size: 14px;
+}
+
+.admin-dashboard .table th {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.admin-dashboard .table td {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.admin-dashboard .badge {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+.admin-dashboard .btn {
+    font-size: 13px;
+    padding: 6px 12px;
+    min-height: 34px;
+}
+
+.admin-dashboard .reports-btns .btn {
+    margin-right: 8px;
+}
+
+/* ===========================
+   Manage Users Compact
+=========================== */
+
+.manage-users-page h2 {
+    font-size: 30px;
+}
+
+.manage-users-page .form-control {
+    font-size: 14px;
+    height: 36px;
+}
+
+.manage-users-page .table {
+    font-size: 14px;
+}
+
+.manage-users-page .table th {
+    padding: 8px;
+    background: #f8d7da;
+    white-space: nowrap;
+}
+
+.manage-users-page .table td {
+    padding: 8px;
+    vertical-align: middle;
+}
+
+.manage-users-page .badge {
+    font-size: 11px;
+    padding: 5px 8px;
+}
+
+.manage-users-page .btn-sm {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.manage-users-page .pagination .page-link {
+    padding: 4px 10px;
+    font-size: 13px;
+}
+
+.manage-users-page .table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.manage-users-page .text-muted {
+    font-size: 13px;
+}
+
+/* ===========================
+   Contact Messages Compact
+=========================== */
+
+.contact-messages-page h2 {
+    font-size: 30px;
+}
+
+.contact-messages-page .form-control {
+    font-size: 14px;
+    height: 36px;
+}
+
+.contact-messages-page .table {
+    font-size: 14px;
+}
+
+.contact-messages-page .table th {
+    background: #f8d7da;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+.contact-messages-page .table td {
+    padding: 8px;
+    vertical-align: middle;
+}
+
+.contact-messages-page .btn-sm {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.contact-messages-page .table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ===========================
+   Compact React Toastify
+=========================== */
+
+.Toastify__toast-container {
+    width: 320px;
+    top: 70px;
+    right: 15px;
+}
+
+.Toastify__toast {
+    min-height: 52px;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 10px 12px;
+}
+
+.Toastify__toast-body {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.Toastify__close-button {
+    font-size: 16px;
+}
+
+.Toastify__progress-bar {
+    height: 4px;
+}
+
+/* ===========================
+   Profile Compact
+=========================== */
+
+.profile-page .card {
+    max-width: 760px;
+    margin: auto;
+}
+
+.profile-page .card-header {
+    padding: 20px 15px;
+}
+
+.profile-page .card-header h3 {
+    font-size: 2rem;
+    margin-bottom: 4px;
+}
+
+.profile-page .card-header p {
+    font-size: 14px;
+}
+
+.profile-page .card-body {
     padding: 20px;
 }
 
-html,
-body,
-#root {
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
+.profile-page strong {
+    font-size: 15px;
+}
+
+.profile-page p {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.profile-page .badge {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.profile-page .btn-sm {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.profile-page .modal-content {
+    border-radius: 12px;
+}
+
+.profile-page .modal-header {
+    padding: 12px 18px;
+}
+
+.profile-page .modal-body {
+    padding: 18px;
+}
+
+.profile-page .form-control,
+.profile-page .form-select {
+    font-size: 14px;
+}
+
+.profile-page label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ===========================
+   Login Page Compact
+=========================== */
+
+.login-page .card {
+    max-width: 450px;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.login-page .card-header {
+    padding: 14px;
+}
+
+.login-page .card-header h2 {
+    font-size: 2rem;
+}
+
+.login-page .card-body {
+    padding: 22px;
+}
+
+.login-page .form-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-page .form-control {
+    height: 40px;
+    font-size: 14px;
+}
+
+.login-page .btn {
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-page .small {
+    font-size: 14px;
+}
+
+/* ===========================
+   Register Page Compact
+=========================== */
+
+.register-page .card {
+    max-width: 850px;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.register-page .card-header {
+    padding: 14px;
+}
+
+.register-page .card-header h2 {
+    font-size: 2rem;
+}
+
+.register-page .card-body {
+    padding: 22px;
+}
+
+.register-page .form-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.register-page .form-control,
+.register-page .form-select {
+    height: 40px;
+    font-size: 14px;
+}
+
+.register-page .btn {
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.register-page .small {
+    font-size: 14px;
+}
+
+.hero-img {
+    max-height: 260px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.about-page h1 {
+    font-size: 2.2rem;
+    line-height: 1.15;
+    margin-bottom: 15px;
+}
+
+.about-page .lead {
+    font-size: .9rem;
+    line-height: 1.6;
+    max-width: 470px;
+}
+
+.about-page .btn {
+    min-width: 150px;
+    height: 42px;
+    font-size: .9rem;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+/* Section Titles */
+.about-page h2 {
+    font-size: 1.8rem;
+}
+
+/* Cards */
+.about-page .card h4 {
+    font-size: 1.2rem;
+}
+
+.about-page .card h5 {
+    font-size: 1.05rem;
+}
+
+.about-page .card p {
+    font-size: .88rem;
+}
+
+/* Impact */
+.impact-card h2 {
+    font-size: 1.8rem;
+}
+
+.impact-card p {
+    font-size: .9rem;
+}
+
+/* Mission & Vision */
+.about-box h3 {
+    font-size: 1.5rem;
+}
+
+.about-box p {
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+/* CTA */
+.cta-section h2 {
+    font-size: 1.8rem;
+}
+
+.cta-section p {
+    font-size: .9rem;
 }

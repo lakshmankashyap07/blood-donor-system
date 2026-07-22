@@ -55,7 +55,7 @@ function MyRequests({ searchTerm = "" }) {
     };
     return (
         <div className="container mt-4">
-            <div className="card shadow border-0">
+            <div className="card shadow-sm my-request-card">
                 <div className="card-header bg-danger text-white">
                     <h3 className="mb-0">📋 My Blood Requests</h3>
                 </div>
@@ -93,10 +93,10 @@ function MyRequests({ searchTerm = "" }) {
                                             <td>
                                                 <span
                                                     className={`badge ${req.status === "Pending"
-                                                            ? "bg-secondary"
-                                                            : req.status === "Accepted"
-                                                                ? "bg-primary"
-                                                                : "bg-success"
+                                                        ? "bg-secondary"
+                                                        : req.status === "Accepted"
+                                                            ? "bg-primary"
+                                                            : "bg-success"
                                                         }`}
                                                 >
                                                     {req.status}
@@ -156,8 +156,8 @@ function MyRequests({ searchTerm = "" }) {
                                             <li
                                                 key={i}
                                                 className={`page-item ${currentPage === i + 1
-                                                        ? "active"
-                                                        : ""
+                                                    ? "active"
+                                                    : ""
                                                     }`}
                                             >
                                                 <button
@@ -172,8 +172,8 @@ function MyRequests({ searchTerm = "" }) {
 
                                     <li
                                         className={`page-item ${currentPage === totalPages
-                                                ? "disabled"
-                                                : ""
+                                            ? "disabled"
+                                            : ""
                                             }`}
                                     >
                                         <button

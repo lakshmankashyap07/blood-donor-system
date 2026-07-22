@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
+import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import {
     getProfile,
     becomeDonor,
@@ -9,11 +8,7 @@ import {
 } from "../../services/api";
 import { toast } from "react-toastify";
 
-function Header({
-    searchTerm,
-    setSearchTerm,
-    toggleSidebar,
-}) {
+function Header({ searchTerm, setSearchTerm, toggleSidebar }) {
     const navigate = useNavigate();
 
     const [user, setUser] = useState(null);
@@ -61,13 +56,11 @@ function Header({
                 const res = await becomeDonor();
 
                 toast.success(res.data.message);
-
                 setUser(res.data.user);
             } else {
                 const res = await toggleAvailability();
 
                 toast.success(res.data.message);
-
                 setUser(res.data.user);
             }
         } catch (error) {
@@ -80,12 +73,17 @@ function Header({
 
     return (
         <nav
-            className="navbar navbar-dark bg-danger fixed-top shadow"
-            style={{ height: "70px", zIndex: 1100 }}
+            className="navbar navbar-dark bg-danger fixed-top shadow-sm"
+            style={{
+                height: "56px",
+                zIndex: 1100,
+                padding: "0 14px",
+            }}
         >
-            <div className="container-fluid">
+            <div className="container-fluid p-0 align-items-center">
 
                 {/* Mobile Menu */}
+
                 <button
                     className="btn btn-danger d-lg-none me-2"
                     onClick={toggleSidebar}
@@ -93,11 +91,25 @@ function Header({
                     ☰
                 </button>
 
-                <Link className="navbar-brand fw-bold" to="/">
+                {/* Logo */}
+
+                <Link
+                    className="navbar-brand fw-bold me-3"
+                    to="/"
+                    style={{
+                        fontSize: "1.05rem",
+                        whiteSpace: "nowrap",
+                    }}
+                >
                     🩸 Smart Blood Donor
                 </Link>
 
-                <div className="d-none d-md-block mx-3 flex-grow-1">
+                {/* Search */}
+
+                <div
+                    className="d-none d-md-flex flex-grow-1 mx-3"
+                    style={{ maxWidth: "520px" }}
+                >
                     <input
                         type="text"
                         className="form-control"
@@ -106,12 +118,24 @@ function Header({
                         onChange={(e) =>
                             setSearchTerm(e.target.value)
                         }
+                        style={{
+                            height: "34px",
+                            fontSize: "13px",
+                        }}
                     />
                 </div>
 
+                {/* Right Side */}
+
                 <div className="d-flex align-items-center">
 
-                    <span className="text-white fw-bold me-2 d-none d-lg-inline">
+                    <span
+                        className="text-white me-2 d-none d-lg-inline"
+                        style={{
+                            fontSize: "13px",
+                            fontWeight: "600",
+                        }}
+                    >
                         {!user?.isDonor
                             ? "Become Donor"
                             : user.available
@@ -119,36 +143,50 @@ function Header({
                                 : "Unavailable"}
                     </span>
 
-                    <div className="form-check form-switch me-3">
+                    <div className="form-check form-switch me-2">
+
                         <input
                             className="form-check-input"
                             type="checkbox"
-                            style={{
-                                width: "50px",
-                                height: "25px",
-                                cursor: "pointer",
-                            }}
                             checked={
                                 user?.isDonor
                                     ? user.available
                                     : false
                             }
                             onChange={handleToggle}
+                            style={{
+                                width: "36px",
+                                height: "18px",
+                                cursor: "pointer",
+                            }}
                         />
+
                     </div>
 
                     <Link
                         to="/profile"
-                        className="btn btn-light btn-sm me-2"
+                        className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center me-2"
+                        style={{
+                            width: "38px",
+                            height: "34px",
+                            minWidth: "34px",
+                            padding: 0,
+                        }}
                     >
                         <FaUserCircle size={25} />
                     </Link>
 
                     <button
-                        className="btn btn-dark btn-sm"
                         onClick={handleLogout}
+                        className="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
+                        style={{
+                            width: "36px",
+                            height: "34px",
+                            minWidth: "34px",
+                            padding: 0,
+                        }}
                     >
-                        <FaSignOutAlt size={25} />
+                        <FaSignOutAlt size={22} />
                     </button>
 
                 </div>

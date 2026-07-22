@@ -39,19 +39,16 @@ function Login() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container py-4 login-page">
       <div className="row justify-content-center">
 
-        <div className="col-md-5">
-
-          <div className="card shadow">
-
-            <div className="card-header bg-danger text-white text-center">
-              <h3>Login</h3>
+        <div className="col-lg-4 col-md-6">
+          <div className="card shadow border-0 rounded-3">
+            <div className="card-header bg-danger text-white text-center py-3">
+              <h2 className="fw-bold mb-0">Login</h2>
             </div>
 
-            <div className="card-body">
-
+            <div className="card-body p-4">
               <form onSubmit={handleSubmit}>
 
                 <div className="mb-3">
@@ -62,8 +59,7 @@ function Login() {
                   <input
                     type="email"
                     name="email"
-                    className="form-control"
-                    placeholder="Enter Email"
+                    className="form-control form-control-sm" placeholder="Enter Email"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -88,12 +84,10 @@ function Login() {
 
                 <button
                   type="submit"
-                  className="btn btn-danger w-100"
-                >
+                  className="btn btn-danger btn-sm w-100"                >
                   Login
                 </button>
-                <div className="text-center mt-3">
-                  Don't have an account?{" "}
+                <div className="text-center mt-3 small">                  Don't have an account?{" "}
                   <Link to="/register">Register</Link>
                 </div>
 

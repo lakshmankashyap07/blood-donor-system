@@ -47,17 +47,16 @@ function ContactMessages() {
     );
 
     return (
-        <div className="container-fluid">
-
-            <div className="d-flex justify-content-between align-items-center mb-4">
-
-                <h2>📩 Contact Messages</h2>
+        <div className="container-fluid px-2 py-2 contact-messages-page">
+            <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <h2 className="fw-bold mb-0">
+                    📩 Contact Messages
+                </h2>
 
                 <input
                     type="text"
-                    className="form-control"
-                    placeholder="Search..."
-                    style={{ maxWidth: "300px" }}
+                    className="form-control form-control-sm" placeholder="Search..."
+                    style={{ maxWidth: "260px" }}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
@@ -66,8 +65,7 @@ function ContactMessages() {
 
             <div className="table-responsive">
 
-                <table className="table table-bordered table-hover">
-
+                <table className="table table-bordered table-hover table-sm align-middle mb-0">
                     <thead className="table-danger">
 
                         <tr>
@@ -97,8 +95,7 @@ function ContactMessages() {
                                     </td>
                                     <td>
                                         <button
-                                            className="btn btn-danger btn-sm"
-                                            onClick={() =>
+                                            className="btn btn-danger btn-sm px-3" onClick={() =>
                                                 handleDelete(item._id)
                                             }
                                         >

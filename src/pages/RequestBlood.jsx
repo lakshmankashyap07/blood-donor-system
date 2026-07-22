@@ -43,22 +43,29 @@ function RequestBlood() {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="card shadow-lg border-0">
-                <div className="card-header bg-danger text-white">
-                    <h3 className="mb-0">🩸 Request Blood</h3>
+        <div
+            className="container py-2"
+            style={{ maxWidth: "850px" }}
+        >
+            <div className="card request-card shadow-sm border-0">
+
+                <div className="card-header bg-danger text-white py-2">
+                    <h5 className="mb-0 text-center">
+                        🩸 Request Blood
+                    </h5>
                 </div>
 
-                <div className="card-body">
+                <div className="card-body p-3">
 
                     <form onSubmit={handleSubmit}>
 
-                        <div className="row">
+                        <div className="row g-2">
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
                                     Patient Name
                                 </label>
+
                                 <input
                                     type="text"
                                     className="form-control"
@@ -69,9 +76,11 @@ function RequestBlood() {
                                 />
                             </div>
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
-                                    Blood Group</label>
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
+                                    Blood Group
+                                </label>
+
                                 <select
                                     className="form-select"
                                     name="bloodGroup"
@@ -91,10 +100,12 @@ function RequestBlood() {
                                 </select>
                             </div>
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
-                                    Unit Required
-                                </label>                                <input
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
+                                    Units Required
+                                </label>
+
+                                <input
                                     type="number"
                                     className="form-control"
                                     name="unitsRequired"
@@ -105,10 +116,11 @@ function RequestBlood() {
                                 />
                             </div>
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
                                     Hospital
                                 </label>
+
                                 <input
                                     type="text"
                                     className="form-control"
@@ -119,10 +131,11 @@ function RequestBlood() {
                                 />
                             </div>
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
                                     City
                                 </label>
+
                                 <input
                                     type="text"
                                     className="form-control"
@@ -133,10 +146,11 @@ function RequestBlood() {
                                 />
                             </div>
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
                                     Contact Number
                                 </label>
+
                                 <input
                                     type="text"
                                     className="form-control"
@@ -147,10 +161,11 @@ function RequestBlood() {
                                 />
                             </div>
 
-                            <div className="col-md-6 mb-3">
-                                <label className="form-label fw-bold d-block text-start">
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold text-start w-100">
                                     Urgency
                                 </label>
+
                                 <select
                                     className="form-select"
                                     name="urgency"
@@ -165,13 +180,19 @@ function RequestBlood() {
 
                         </div>
 
-                        <button className="btn btn-danger">
-                            Submit Request
-                        </button>
+                        <div className="text-center mt-3">
+                            <button
+                                type="submit"
+                                className="btn btn-danger px-4"
+                            >
+                                Submit Request
+                            </button>
+                        </div>
 
                     </form>
 
                 </div>
+
             </div>
         </div>
     );

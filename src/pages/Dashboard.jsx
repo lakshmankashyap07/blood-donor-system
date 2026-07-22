@@ -24,7 +24,6 @@ function Dashboard({ searchTerm = "" }) {
     }
   };
 
-  // Filter Donors
   const filteredDonors = dashboard.donors.filter((donor) => {
     const search = searchTerm.trim().toLowerCase();
 
@@ -37,7 +36,6 @@ function Dashboard({ searchTerm = "" }) {
     );
   });
 
-  // Blood Group Statistics (Filtered)
   const bloodGroups = [
     "A+",
     "A-",
@@ -58,82 +56,87 @@ function Dashboard({ searchTerm = "" }) {
   });
 
   return (
-    <div className="container-fluid p-4">
+    <div className="container-fluid px-0 py-2">
 
-      <h2 className="text-center fw-bold mb-4">
+      <h3 className="text-center fw-bold mb-3">
         Blood Donor Dashboard
-      </h2>
+      </h3>
 
-      {/* Cards */}
+      {/* Summary Cards */}
 
-      <div className="row g-4">
+      <div className="row g-3 mb-3">
 
-        <div className="col-md-3">
-          <div className="card shadow text-center">
-            <div className="card-body">
-              <h6>Total Donors</h6>
-              <h2>{dashboard.totalDonors}</h2>
+        <div className="col-lg-3 col-md-6 col-6">
+          <div className="card shadow-sm text-center h-100">
+            <div className="card-body py-3">
+              <h6 className="text-muted mb-2">Total Donors</h6>
+              <h3 className="fw-bold mb-0">{dashboard.totalDonors}</h3>
             </div>
           </div>
         </div>
 
-        <div className="col-md-3">
-          <div className="card shadow text-center">
-            <div className="card-body">
-              <h6>Available Donors</h6>
-              <h2>{dashboard.availableDonors}</h2>
+        <div className="col-lg-3 col-md-6 col-6">
+          <div className="card shadow-sm text-center h-100">
+            <div className="card-body py-3">
+              <h6 className="text-muted mb-2">Available Donors</h6>
+              <h3 className="fw-bold mb-0">{dashboard.availableDonors}</h3>
             </div>
           </div>
         </div>
 
-        <div className="col-md-3">
-          <div className="card shadow text-center">
-            <div className="card-body">
-              <h6>Male Donors</h6>
-              <h2>{dashboard.maleDonors}</h2>
+        <div className="col-lg-3 col-md-6 col-6">
+          <div className="card shadow-sm text-center h-100">
+            <div className="card-body py-3">
+              <h6 className="text-muted mb-2">Male Donors</h6>
+              <h3 className="fw-bold mb-0">{dashboard.maleDonors}</h3>
             </div>
           </div>
         </div>
 
-        <div className="col-md-3">
-          <div className="card shadow text-center">
-            <div className="card-body">
-              <h6>Female Donors</h6>
-              <h2>{dashboard.femaleDonors}</h2>
+        <div className="col-lg-3 col-md-6 col-6">
+          <div className="card shadow-sm text-center h-100">
+            <div className="card-body py-3">
+              <h6 className="text-muted mb-2">Female Donors</h6>
+              <h3 className="fw-bold mb-0">{dashboard.femaleDonors}</h3>
             </div>
           </div>
         </div>
 
       </div>
 
-      {/* Chart */}
+      {/* Blood Group Chart */}
 
       <BloodGroupChart donors={filteredDonors} />
 
       {/* Blood Group Statistics */}
 
-      <div className="card shadow mt-5">
+      <div className="card shadow-sm mt-3">
 
-        <div className="card-header bg-primary text-white">
-          <h5 className="mb-0">Blood Group Statistics</h5>
+        <div className="card-header bg-primary text-white py-2">
+          <h6 className="mb-0 text-center">
+            Blood Group Statistics
+          </h6>
         </div>
 
-        <div className="card-body">
+        <div className="card-body py-3">
 
-          <div className="row">
+          <div className="row g-2">
 
             {Object.entries(bloodGroupStats).map(([group, count]) => (
 
-              <div className="col-md-3 col-6 mb-3" key={group}>
+              <div
+                className="col-lg-3 col-md-4 col-6"
+                key={group}
+              >
+                <div className="border rounded text-center py-2 h-100">
+                  <h5 className="text-danger mb-1">
+                    {group}
+                  </h5>
 
-                <div className="border rounded p-3 text-center">
-
-                  <h4 className="text-danger">{group}</h4>
-
-                  <h5>{count} Donors</h5>
-
+                  <small className="text-muted">
+                    {count} Donors
+                  </small>
                 </div>
-
               </div>
 
             ))}
@@ -146,18 +149,19 @@ function Dashboard({ searchTerm = "" }) {
 
       {/* Recent Donors */}
 
-      <div className="card shadow mt-5">
+      <div className="card shadow-sm mt-3">
 
-        <div className="card-header bg-danger text-white">
-          <h5 className="mb-0">Recent Donors</h5>
+        <div className="card-header bg-danger text-white py-2">
+          <h6 className="mb-0 text-center">
+            Recent Donors
+          </h6>
         </div>
 
         <div className="table-responsive">
 
-          <table className="table table-hover mb-0">
+          <table className="table table-hover table-sm mb-0">
 
             <thead className="table-light">
-
               <tr>
                 <th>Name</th>
                 <th>Blood Group</th>
@@ -166,15 +170,12 @@ function Dashboard({ searchTerm = "" }) {
                 <th>City</th>
                 <th>Phone</th>
               </tr>
-
             </thead>
 
             <tbody>
 
               {filteredDonors.length > 0 ? (
-
                 filteredDonors.map((donor) => (
-
                   <tr key={donor._id}>
                     <td>{donor.name}</td>
                     <td>{donor.bloodGroup}</td>
@@ -183,19 +184,13 @@ function Dashboard({ searchTerm = "" }) {
                     <td>{donor.city}</td>
                     <td>{donor.phone}</td>
                   </tr>
-
                 ))
-
               ) : (
-
                 <tr>
-
-                  <td colSpan="6" className="text-center">
+                  <td colSpan="6" className="text-center py-3">
                     No Donors Found
                   </td>
-
                 </tr>
-
               )}
 
             </tbody>

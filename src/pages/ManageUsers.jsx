@@ -91,16 +91,15 @@ function ManageUsers() {
     const paginate = (pageNumber) =>
         setCurrentPage(pageNumber);
     return (
-        <div className="container-fluid">
-
-            <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-
-                <h2>👥 Manage Users</h2>
-
+        <div className="container-fluid px-2 py-2 manage-users-page">
+            <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <h2 className="fw-bold mb-0">
+                    👥 Manage Users
+                </h2>
                 <input
                     type="text"
-                    className="form-control mt-2 mt-md-0"
-                    style={{ maxWidth: "300px" }}
+                    className="form-control form-control-sm mt-2 mt-md-0"
+                    style={{ maxWidth: "260px" }}
                     placeholder="Search users..."
                     value={search}
                     onChange={(e) => {
@@ -113,8 +112,7 @@ function ManageUsers() {
 
             <div className="table-responsive">
 
-                <table className="table table-bordered table-hover align-middle">
-
+                <table className="table table-bordered table-hover table-sm align-middle mb-0">
                     <thead className="table-danger">
 
                         <tr>
@@ -152,8 +150,8 @@ function ManageUsers() {
                                     <td>
                                         <span
                                             className={`badge ${user.role === "admin"
-                                                    ? "bg-danger"
-                                                    : "bg-secondary"
+                                                ? "bg-danger"
+                                                : "bg-secondary"
                                                 }`}
                                         >
                                             {user.role}
@@ -191,8 +189,7 @@ function ManageUsers() {
                                             <>
 
                                                 <button
-                                                    className="btn btn-warning btn-sm me-2"
-                                                    onClick={() =>
+                                                    className="btn btn-warning btn-sm me-1" onClick={() =>
                                                         handleRole(user._id, user.role)
                                                     }
                                                 >
@@ -248,8 +245,7 @@ function ManageUsers() {
 
             {filteredUsers.length > usersPerPage && (
 
-                <div className="d-flex justify-content-between align-items-center flex-wrap mt-3">
-
+                <div className="d-flex justify-content-between align-items-center flex-wrap mt-2">
                     <p className="mb-2">
                         Showing{" "}
                         <strong>
@@ -287,8 +283,8 @@ function ManageUsers() {
                                     <li
                                         key={i}
                                         className={`page-item ${currentPage === i + 1
-                                                ? "active"
-                                                : ""
+                                            ? "active"
+                                            : ""
                                             }`}
                                     >
                                         <button
@@ -305,8 +301,8 @@ function ManageUsers() {
 
                             <li
                                 className={`page-item ${currentPage === totalPages
-                                        ? "disabled"
-                                        : ""
+                                    ? "disabled"
+                                    : ""
                                     }`}
                             >
                                 <button

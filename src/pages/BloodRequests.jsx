@@ -135,7 +135,7 @@ function BloodRequests({ searchTerm = "" }) {
         setCurrentPage(pageNumber);
     return (
         <div className="container mt-4">
-            <div className="card shadow border-0">
+            <div className="card shadow-sm blood-request-card">
 
                 <div className="card-header bg-danger text-white">
                     <h3 className="mb-0">🩸 Blood Requests</h3>
@@ -248,10 +248,10 @@ function BloodRequests({ searchTerm = "" }) {
                                             <td>
                                                 <span
                                                     className={`badge ${req.urgency === "High"
-                                                            ? "bg-danger"
-                                                            : req.urgency === "Medium"
-                                                                ? "bg-warning text-dark"
-                                                                : "bg-success"
+                                                        ? "bg-danger"
+                                                        : req.urgency === "Medium"
+                                                            ? "bg-warning text-dark"
+                                                            : "bg-success"
                                                         }`}
                                                 >
                                                     {req.urgency}
@@ -261,10 +261,10 @@ function BloodRequests({ searchTerm = "" }) {
                                             <td>
                                                 <span
                                                     className={`badge ${req.status === "Pending"
-                                                            ? "bg-secondary"
-                                                            : req.status === "Accepted"
-                                                                ? "bg-primary"
-                                                                : "bg-success"
+                                                        ? "bg-secondary"
+                                                        : req.status === "Accepted"
+                                                            ? "bg-primary"
+                                                            : "bg-success"
                                                         }`}
                                                 >
                                                     {req.status}

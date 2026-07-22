@@ -99,7 +99,7 @@ function DonationHistory({ searchTerm = "" }) {
     setCurrentPage(pageNumber);
   return (
     <div className="container mt-4">
-      <div className="card shadow border-0">
+      <div className="card shadow-sm donation-history-card">
         <div className="card-header bg-success text-white">
           <h3 className="mb-0">🩸 Donation History</h3>
         </div>
@@ -264,8 +264,8 @@ function DonationHistory({ searchTerm = "" }) {
                       <li
                         key={i}
                         className={`page-item ${currentPage === i + 1
-                            ? "active"
-                            : ""
+                          ? "active"
+                          : ""
                           }`}
                       >
                         <button
@@ -280,8 +280,8 @@ function DonationHistory({ searchTerm = "" }) {
 
                   <li
                     className={`page-item ${currentPage === totalPages
-                        ? "disabled"
-                        : ""
+                      ? "disabled"
+                      : ""
                       }`}
                   >
                     <button
