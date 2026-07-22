@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function Sidebar({ closeSidebar }) {
+    const user = JSON.parse(localStorage.getItem("user"));
+
     const menuStyle = ({ isActive }) => ({
         display: "flex",
         alignItems: "center",
@@ -35,7 +37,6 @@ function Sidebar({ closeSidebar }) {
             <h4 className="mb-4">🩸 Blood Donor</h4>
 
             <ul className="nav flex-column">
-
                 <li className="nav-item">
                     <NavLink to="/" style={menuStyle} onClick={handleClick}>
                         🏠 <span className="ms-2">Dashboard</span>
@@ -102,6 +103,41 @@ function Sidebar({ closeSidebar }) {
                     </NavLink>
                 </li>
 
+                {user?.role === "admin" && (
+                    <li className="nav-item">
+                        <NavLink
+                            to="/admin-dashboard"
+                            style={menuStyle}
+                            onClick={handleClick}
+                        >
+                            📊 <span className="ms-2">Admin Dashboard</span>
+                        </NavLink>
+                    </li>
+                )}
+
+                {user?.role === "admin" && (
+                    <li className="nav-item">
+                        <NavLink
+                            to="/manage-users"
+                            style={menuStyle}
+                            onClick={handleClick}
+                        >
+                            👥 <span className="ms-2">Manage Users</span>
+                        </NavLink>
+                    </li>
+                )}
+
+                {user?.role === "admin" && (
+                    <li className="nav-item">
+                        <NavLink
+                            to="/contact-messages"
+                            style={menuStyle}
+                            onClick={handleClick}
+                        >
+                            📩 <span className="ms-2">Contact Messages</span>
+                        </NavLink>
+                    </li>
+                )}
             </ul>
         </div>
     );

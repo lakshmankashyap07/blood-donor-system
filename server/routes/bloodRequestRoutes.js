@@ -44,25 +44,6 @@ router.post("/", authMiddleware, async (req, res) => {
     }
 });
 
-// Get All Blood Requests
-router.get("/", authMiddleware, async (req, res) => {
-    try {
-        const requests = await BloodRequest.find()
-            .populate("requester", "name email phone")
-            .populate("acceptedBy", "name phone")
-            .sort({ createdAt: -1 });
-
-        res.status(200).json({
-            success: true,
-            requests,
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
-});
 
 // Get All Blood Requests
 router.get("/", authMiddleware, async (req, res) => {
@@ -84,16 +65,7 @@ router.get("/", authMiddleware, async (req, res) => {
     }
 });
 
-export const acceptBloodRequest = (id) =>
-    API.put(
-        `/requests/${id}/accept`,
-        {},
-        {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        }
-    );
+
 
 // Get Logged-in User Requests
 router.get("/my", authMiddleware, async (req, res) => {

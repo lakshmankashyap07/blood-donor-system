@@ -11,6 +11,20 @@ function BloodRequests({ searchTerm = "" }) {
     const [requests, setRequests] = useState([]);
     const [user, setUser] = useState(null);
 
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const requestsPerPage = 10;
+
+    // Filters
+    const [bloodFilter, setBloodFilter] = useState("All");
+    const [statusFilter, setStatusFilter] = useState("All");
+    const [cityFilter, setCityFilter] = useState("All");
+
+    useEffect(() => {
+        fetchRequests();
+        loadProfile();
+    }, []);
+
     const fetchRequests = async () => {
         try {
             const res = await getBloodRequests();
@@ -30,7 +44,6 @@ function BloodRequests({ searchTerm = "" }) {
                 setUser(res.data);
             }
         } catch (error) {
-            console.log(error);
             toast.error("Failed to load profile");
         }
     };
@@ -42,7 +55,8 @@ function BloodRequests({ searchTerm = "" }) {
             fetchRequests();
         } catch (error) {
             toast.error(
-                error.response?.data?.message || "Failed to accept request"
+                error.response?.data?.message ||
+                "Failed to accept request"
             );
         }
     };
@@ -54,30 +68,71 @@ function BloodRequests({ searchTerm = "" }) {
             fetchRequests();
         } catch (error) {
             toast.error(
-                error.response?.data?.message || "Failed to complete donation"
+                error.response?.data?.message ||
+                "Failed to complete donation"
             );
         }
     };
 
-    useEffect(() => {
-        fetchRequests();
-        loadProfile();
-    }, []);
+    // City Dropdown
+    const cities = [
+        "All",
+        ...new Set(
+            requests
+                .map((r) => r.city)
+                .filter(Boolean)
+        ),
+    ];
 
-    // Search Filter
+    // Search + Filters
     const filteredRequests = requests.filter((req) => {
         const search = searchTerm.trim().toLowerCase();
 
-        if (search === "") return true;
-
-        return (
+        const matchesSearch =
+            search === "" ||
             req.patientName?.toLowerCase().includes(search) ||
             req.bloodGroup?.toLowerCase().includes(search) ||
             req.hospital?.toLowerCase().includes(search) ||
-            req.city?.toLowerCase().includes(search)
+            req.city?.toLowerCase().includes(search);
+
+        const matchesBlood =
+            bloodFilter === "All" ||
+            req.bloodGroup === bloodFilter;
+
+        const matchesStatus =
+            statusFilter === "All" ||
+            req.status === statusFilter;
+
+        const matchesCity =
+            cityFilter === "All" ||
+            req.city === cityFilter;
+
+        return (
+            matchesSearch &&
+            matchesBlood &&
+            matchesStatus &&
+            matchesCity
         );
     });
 
+    // Pagination
+    const indexOfLastRequest =
+        currentPage * requestsPerPage;
+
+    const indexOfFirstRequest =
+        indexOfLastRequest - requestsPerPage;
+
+    const currentRequests = filteredRequests.slice(
+        indexOfFirstRequest,
+        indexOfLastRequest
+    );
+
+    const totalPages = Math.ceil(
+        filteredRequests.length / requestsPerPage
+    );
+
+    const paginate = (pageNumber) =>
+        setCurrentPage(pageNumber);
     return (
         <div className="container mt-4">
             <div className="card shadow border-0">
@@ -88,12 +143,73 @@ function BloodRequests({ searchTerm = "" }) {
 
                 <div className="card-body">
 
+                    {/* Filters */}
+
+                    <div className="row mb-3">
+
+                        <div className="col-md-4 mb-2">
+                            <select
+                                className="form-select"
+                                value={bloodFilter}
+                                onChange={(e) => {
+                                    setBloodFilter(e.target.value);
+                                    setCurrentPage(1);
+                                }}
+                            >
+                                <option value="All">All Blood Groups</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+
+                        <div className="col-md-4 mb-2">
+                            <select
+                                className="form-select"
+                                value={statusFilter}
+                                onChange={(e) => {
+                                    setStatusFilter(e.target.value);
+                                    setCurrentPage(1);
+                                }}
+                            >
+                                <option value="All">All Status</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Accepted">Accepted</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div className="col-md-4 mb-2">
+                            <select
+                                className="form-select"
+                                value={cityFilter}
+                                onChange={(e) => {
+                                    setCityFilter(e.target.value);
+                                    setCurrentPage(1);
+                                }}
+                            >
+                                {cities.map((city, index) => (
+                                    <option key={index} value={city}>
+                                        {city}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                    </div>
+
                     <div className="table-responsive">
 
                         <table className="table table-bordered table-hover align-middle text-center">
 
                             <thead className="table-danger">
                                 <tr>
+                                    <th>#</th>
                                     <th>Patient</th>
                                     <th>Blood Group</th>
                                     <th>Units</th>
@@ -107,11 +223,13 @@ function BloodRequests({ searchTerm = "" }) {
 
                             <tbody>
 
-                                {filteredRequests.length > 0 ? (
+                                {currentRequests.length > 0 ? (
 
-                                    filteredRequests.map((req) => (
+                                    currentRequests.map((req, index) => (
 
                                         <tr key={req._id}>
+
+                                            <td>{indexOfFirstRequest + index + 1}</td>
 
                                             <td>{req.patientName}</td>
 
@@ -156,41 +274,31 @@ function BloodRequests({ searchTerm = "" }) {
                                             <td>
 
                                                 {!user?.isDonor ? (
-
                                                     <span className="text-muted">
                                                         Not Allowed
                                                     </span>
-
                                                 ) : !user?.available ? (
-
                                                     <span className="badge bg-warning text-dark">
                                                         Unavailable
                                                     </span>
-
                                                 ) : req.status === "Pending" ? (
-
                                                     <button
                                                         className="btn btn-success btn-sm"
                                                         onClick={() => handleAccept(req._id)}
                                                     >
                                                         Accept
                                                     </button>
-
                                                 ) : req.status === "Accepted" ? (
-
                                                     <button
                                                         className="btn btn-primary btn-sm"
                                                         onClick={() => handleComplete(req._id)}
                                                     >
                                                         Complete
                                                     </button>
-
                                                 ) : (
-
                                                     <span className="badge bg-success">
                                                         ✔ Completed
                                                     </span>
-
                                                 )}
 
                                             </td>
@@ -202,7 +310,7 @@ function BloodRequests({ searchTerm = "" }) {
                                 ) : (
 
                                     <tr>
-                                        <td colSpan="8" className="text-center">
+                                        <td colSpan="9" className="text-center">
                                             No Blood Requests Found
                                         </td>
                                     </tr>
@@ -214,12 +322,77 @@ function BloodRequests({ searchTerm = "" }) {
                         </table>
 
                     </div>
+                    {/* Pagination */}
+                    {filteredRequests.length > requestsPerPage && (
+                        <div className="d-flex justify-content-between align-items-center flex-wrap mt-3">
+
+                            <p className="mb-2">
+                                Showing <strong>{indexOfFirstRequest + 1}</strong> -{" "}
+                                <strong>
+                                    {Math.min(
+                                        indexOfLastRequest,
+                                        filteredRequests.length
+                                    )}
+                                </strong>{" "}
+                                of <strong>{filteredRequests.length}</strong> Requests
+                            </p>
+
+                            <nav>
+                                <ul className="pagination mb-0">
+
+                                    <li
+                                        className={`page-item ${currentPage === 1 ? "disabled" : ""
+                                            }`}
+                                    >
+                                        <button
+                                            className="page-link"
+                                            onClick={() => setCurrentPage(currentPage - 1)}
+                                        >
+                                            Previous
+                                        </button>
+                                    </li>
+
+                                    {Array.from(
+                                        { length: totalPages },
+                                        (_, i) => (
+                                            <li
+                                                key={i}
+                                                className={`page-item ${currentPage === i + 1 ? "active" : ""
+                                                    }`}
+                                            >
+                                                <button
+                                                    className="page-link"
+                                                    onClick={() => paginate(i + 1)}
+                                                >
+                                                    {i + 1}
+                                                </button>
+                                            </li>
+                                        )
+                                    )}
+
+                                    <li
+                                        className={`page-item ${currentPage === totalPages ? "disabled" : ""
+                                            }`}
+                                    >
+                                        <button
+                                            className="page-link"
+                                            onClick={() => setCurrentPage(currentPage + 1)}
+                                        >
+                                            Next
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </nav>
+
+                        </div>
+                    )}
 
                 </div>
-
             </div>
         </div>
     );
+
 }
 
 export default BloodRequests;

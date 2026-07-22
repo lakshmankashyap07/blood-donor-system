@@ -24,6 +24,10 @@ import MyRequests from "./pages/MyRequests";
 import DonationHistory from "./pages/DonationHistory";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ContactMessages from "./pages/ContactMessages";
+import AdminRoute from "./components/AdminRoute";
+import ManageUsers from "./pages/ManageUsers";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,6 +40,32 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/manage-users"
+          element={
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin-dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/contact-messages"
+          element={
+            <AdminRoute>
+              <ContactMessages />
+            </AdminRoute>
+          }
+        />
 
         {/* Protected Routes */}
         <Route

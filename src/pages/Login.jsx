@@ -26,7 +26,7 @@ function Login() {
       const res = await loginAdmin(formData);
 
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("admin", JSON.stringify(res.data.admin));
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       toast.success("Login Successful");
 

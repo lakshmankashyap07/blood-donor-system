@@ -123,3 +123,60 @@ export const getDashboard = () =>
 // Contact Message
 export const sendContactMessage = (data) =>
     API.post("/contact", data);
+
+// Get Contact Messages
+export const getContactMessages = () =>
+    API.get("/contact", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+// Delete Contact Message
+export const deleteContactMessage = (id) =>
+    API.delete(`/contact/${id}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+// ==============================
+// Admin - Manage Users
+// ==============================
+
+// Get All Users
+export const getUsers = () =>
+    API.get("/users", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+// Delete User
+export const deleteUser = (id) =>
+    API.delete(`/users/${id}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+// Update User Role
+export const updateUserRole = (id, role) =>
+    API.put(
+        `/users/${id}/role`,
+        { role },
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        }
+    );
+
+// Admin Dashboard Analytics
+export const getAdminDashboard = () =>
+    API.get("/users/admin-dashboard", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
