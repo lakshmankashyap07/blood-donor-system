@@ -31,3 +31,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
+
+app.get("/", (req, res) => {
+  res.send("Blood Donor Backend API is running...");
+});
