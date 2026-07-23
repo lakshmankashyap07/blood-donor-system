@@ -28,6 +28,9 @@ import ContactMessages from "./pages/ContactMessages";
 import AdminRoute from "./components/AdminRoute";
 import ManageUsers from "./pages/ManageUsers";
 import AdminDashboard from "./pages/AdminDashboard";
+import ForgotPassword from "./pages/ForgotPassword";
+import VerifyOTP from "./pages/VerifyOTP";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,6 +43,9 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route
           path="/manage-users"
           element={
@@ -78,6 +84,16 @@ function App() {
             </ProtectedRoute>
           }
         >
+
+          <Route
+            path="/donation-history"
+            element={
+              <AdminRoute>
+                <DonationHistory searchTerm={searchTerm} />
+              </AdminRoute>
+            }
+          />
+
           <Route
             path="/"
             element={<Dashboard searchTerm={searchTerm} />}
@@ -103,10 +119,7 @@ function App() {
             element={<MyRequests searchTerm={searchTerm} />}
           />
 
-          <Route
-            path="/donation-history"
-            element={<DonationHistory searchTerm={searchTerm} />}
-          />
+
 
           <Route
             path="/about"
@@ -130,7 +143,7 @@ function App() {
         closeOnClick
         pauseOnHover
         draggable
-        
+
       />
 
     </BrowserRouter>

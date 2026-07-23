@@ -87,6 +87,15 @@ function Login() {
                   className="btn btn-danger btn-sm w-100"                >
                   Login
                 </button>
+                <div className="text-end mt-2">
+                  <Link
+                    to="/forgot-password"
+                    className="text-danger text-decoration-none small"
+                    style={{ fontSize: "0.9rem" }}
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
                 <div className="text-center mt-3 small">                  Don't have an account?{" "}
                   <Link to="/register">Register</Link>
                 </div>

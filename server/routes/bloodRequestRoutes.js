@@ -186,9 +186,20 @@ router.put("/:id/complete", authMiddleware, async (req, res) => {
     }
 });
 
-// Donation History
+
+// Donation History (Admin Only)
 router.get("/history", authMiddleware, async (req, res) => {
     try {
+
+        const user = await User.findById(req.user.id);
+
+        if (!user || user.role !== "admin") {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied. Admin only.",
+            });
+        }
+
         const history = await BloodRequest.find({
             status: "Completed",
         })
@@ -200,6 +211,7 @@ router.get("/history", authMiddleware, async (req, res) => {
             success: true,
             history,
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -207,5 +219,4 @@ router.get("/history", authMiddleware, async (req, res) => {
         });
     }
 });
-
 export default router;

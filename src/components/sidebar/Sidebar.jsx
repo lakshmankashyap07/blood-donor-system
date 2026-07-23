@@ -78,15 +78,6 @@ function Sidebar({ closeSidebar }) {
                     </NavLink>
                 </li>
 
-                <li className="nav-item">
-                    <NavLink
-                        to="/donation-history"
-                        style={menuStyle}
-                        onClick={handleClick}
-                    >
-                        📜 <span className="ms-2">Donation History</span>
-                    </NavLink>
-                </li>
 
                 <li className="nav-item">
                     <NavLink
@@ -108,6 +99,19 @@ function Sidebar({ closeSidebar }) {
                     </NavLink>
                 </li>
 
+                
+
+                {user?.role === "admin" && (
+                    <li className="nav-item">
+                        <NavLink
+                            to="/donation-history"
+                            style={menuStyle}
+                            onClick={handleClick}
+                        >
+                            📜 <span className="ms-2">Donation History</span>
+                        </NavLink>
+                    </li>
+                )}
                 {user?.role === "admin" && (
                     <li className="nav-item">
                         <NavLink

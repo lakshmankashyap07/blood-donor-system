@@ -929,3 +929,122 @@ textarea.form-control {
 .cta-section p {
     font-size: .9rem;
 }
+
+.forgot-password-page .card {
+    max-width: 500px;
+    margin: auto;
+}
+
+.forgot-password-page .card-header {
+    padding: 12px;
+}
+
+.forgot-password-page .card-header h3 {
+    font-size: 1.2rem;
+}
+
+.forgot-password-page .card-body {
+    padding: 20px;
+}
+
+.forgot-password-page .form-label {
+    font-size: .80rem;
+}
+
+.forgot-password-page .form-control {
+    height: 0px;
+    font-size: .8rem;
+}
+
+.forgot-password-page .btn {
+    height: 40px;
+    font-size: .8rem;
+}
+
+@media (max-width:768px) {
+    .forgot-password-page .card {
+        margin: 15px;
+    }
+
+    .forgot-password-page .card-header h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Verify OTP */
+
+.verify-otp-page .card {
+    max-width: 900px;
+    margin: auto;
+}
+
+.verify-otp-page .card-header {
+    padding: 10px 15px;
+    height: 70px;
+}
+
+.verify-otp-page .card-header h4 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.verify-otp-page .card-body {
+    padding: 20px;
+}
+
+.verify-otp-page .form-label {
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.verify-otp-page .form-control {
+    height: 48px;
+    font-size: .80rem;
+}
+
+.verify-otp-page .btn {
+    height: 38px;
+    font-size: .8rem;
+}
+
+/* Reset Password */
+
+.reset-password-page .card {
+    max-width: 550px;
+    margin: auto;
+}
+
+.reset-password-page .card-header h2 {
+    font-size: 1.6rem;
+}
+
+.reset-password-page .card-body {
+    padding: 1.2rem;
+}
+
+.reset-password-page .form-label {
+    font-size: .90rem;
+    font-weight: 500;
+}
+
+.reset-password-page .form-control {
+    height: 40px;
+    font-size: .8rem;
+}
+
+.reset-password-page .btn {
+    height: 40px;
+    font-size: .8rem;
+}
+
+@media (max-width:768px) {
+
+    .reset-password-page .card {
+        max-width: 95%;
+    }
+
+    .reset-password-page .card-header h2 {
+        font-size: 1.2rem;
+    }
+
+}

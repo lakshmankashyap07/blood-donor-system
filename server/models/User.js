@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const userSchema = new mongoose.Schema(
     {
         name: {
@@ -58,6 +59,19 @@ const userSchema = new mongoose.Schema(
         available: {
             type: Boolean,
             default: true,
+        },
+
+        resetOTP: {
+            type: String,
+        },
+
+        resetOTPExpire: {
+            type: Date,
+        },
+
+        isVerified: {
+            type: Boolean,
+            default: false,
         },
     },
     {

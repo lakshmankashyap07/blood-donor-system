@@ -181,3 +181,14 @@ export const getAdminDashboard = () =>
         },
     });
 
+// Forgot Password
+export const forgotPassword = (data) =>
+    API.post("/auth/forgot-password", data);
+
+// Verify OTP
+export const verifyOTP = (data) =>
+    API.post("/auth/verify-otp", data);
+
+// Reset Password
+export const resetPassword = (data) =>
+    API.post("/auth/reset-password", data);
