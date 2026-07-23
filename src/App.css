@@ -15,6 +15,8 @@ body,
     min-height: 100vh;
 }
 
+
+
 html {
     font-size: 15px;
 }
@@ -316,8 +318,8 @@ textarea.form-control {
 }
 
 .blood-request-card .pagination .page-link {
-    font-size: 75rem;
-    padding: .3rem .55rem;
+    font-size: .65rem;
+    padding: 3px 8px;
 }
 
 .blood-request-card .table-responsive {
@@ -336,6 +338,10 @@ textarea.form-control {
     padding: 5px 6px;
 }
 
+.blood-request-card p {
+    font-size: .75rem;
+    margin-bottom: 0;
+}
 /* ===== My Requests Compact ===== */
 
 .my-request-card .card-header {

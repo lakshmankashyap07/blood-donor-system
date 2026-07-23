@@ -28,12 +28,13 @@ function Sidebar({ closeSidebar }) {
 
     return (
         <div
-            className="bg-dark text-white shadow position-fixed d-none d-lg-block"
+            className={`bg-dark text-white shadow ${closeSidebar ? "" : "position-fixed d-none d-lg-block"
+                }`}
             style={{
                 width: "201px",
-                top: "56px",
+                top: closeSidebar ? 0 : "56px",
                 left: 0,
-                height: "calc(100vh - 56px)",
+                height: closeSidebar ? "100vh" : "calc(100vh - 56px)",
                 padding: "12px 10px",
                 overflowY: "auto",
                 overflowX: "hidden",
@@ -99,7 +100,7 @@ function Sidebar({ closeSidebar }) {
                     </NavLink>
                 </li>
 
-                
+
 
                 {user?.role === "admin" && (
                     <li className="nav-item">

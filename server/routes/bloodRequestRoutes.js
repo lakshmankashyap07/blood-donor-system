@@ -2,6 +2,7 @@ import express from "express";
 import BloodRequest from "../models/BloodRequest.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import User from "../models/User.js";
+import Notification from "../models/Notification.js";
 
 const router = express.Router();
 
@@ -30,6 +31,21 @@ router.post("/", authMiddleware, async (req, res) => {
             contactNumber,
             urgency,
         });
+        // Get requester details
+        const requester = await User.findById(req.user.id);
+
+        // Notify all admins
+        const admins = await User.find({ role: "admin" });
+
+        for (const admin of admins) {
+            await Notification.create({
+                user: admin._id,
+                title: "New Blood Request",
+                message: `${requester.name} created a new blood request.`,
+                type: "request_created",
+                requestId: request._id,
+            });
+        }
 
         res.status(201).json({
             success: true,
@@ -128,6 +144,20 @@ router.put("/:id/accept", authMiddleware, async (req, res) => {
 
         await request.save();
 
+        console.log("Request Saved");
+        console.log("Requester:", request.requester);
+        console.log("Donor:", donor.name);
+
+        const notification = await Notification.create({
+            user: request.requester,
+            title: "Blood Request Accepted",
+            message: `${donor.name} has accepted your blood request.`,
+            type: "request_accepted",
+            requestId: request._id,
+        });
+
+        console.log("Notification Created:", notification);
+
         res.status(200).json({
             success: true,
             message: "Blood request accepted successfully",
@@ -172,6 +202,24 @@ router.put("/:id/complete", authMiddleware, async (req, res) => {
 
         request.status = "Completed";
         await request.save();
+
+        // Notify requester
+        await Notification.create({
+            user: request.requester,
+            title: "Donation Completed",
+            message: `${donor.name} has successfully completed your blood request.`,
+            type: "donation_completed",
+            requestId: request._id,
+        });
+
+        // Notify donor
+        await Notification.create({
+            user: donor._id,
+            title: "Donation Completed",
+            message: `Thank you for donating blood. You have successfully completed a donation.`,
+            type: "donation_completed",
+            requestId: request._id,
+        });
 
         res.status(200).json({
             success: true,

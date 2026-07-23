@@ -31,6 +31,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import VerifyOTP from "./pages/VerifyOTP";
 import ResetPassword from "./pages/ResetPassword";
+// import Notification from "./pages/Notification";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,6 +47,10 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        {/* <Route
+          path="/notifications"
+          element={<Notification />}
+        /> */}
         <Route
           path="/manage-users"
           element={

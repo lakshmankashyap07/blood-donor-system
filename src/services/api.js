@@ -192,3 +192,39 @@ export const verifyOTP = (data) =>
 // Reset Password
 export const resetPassword = (data) =>
     API.post("/auth/reset-password", data);
+
+export const getNotifications = () =>
+    API.get("/notifications", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+export const markAsRead = (id) =>
+    API.put(
+        `/notifications/read/${id}`,
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        }
+    );
+
+export const markAllRead = () =>
+    API.put(
+        "/notifications/read-all",
+        {},
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        }
+    );
+
+export const deleteNotification = (id) =>
+    API.delete(`/notifications/${id}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
